@@ -14,6 +14,11 @@ resource "aws_iam_role" "NodeGroupRole" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "ebs_csi_controller_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  role       = aws_iam_role.NodeGroupRole.name
+}
+
 //This policy allows Amazon EKS worker nodes to connect to Amazon EKS Clusters.
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
