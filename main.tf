@@ -46,7 +46,8 @@ resource "aws_eks_node_group" "node-ec2" {
   }
 
   launch_template {
-    name = "toto"
+    name    = "toto"
+    version = "default_version"
   }
 
   update_config {
