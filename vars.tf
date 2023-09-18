@@ -65,3 +65,12 @@ variable "eks_cluster_name" {
   description = "The name of the EKS cluster"
   type        = string
 }
+
+variable "node_groups" {
+  description = "List of node groups for the EKS cluster"
+  type        = list(object({
+    name = string
+    # Ajoutez d'autres attributs si nécessaire
+  }))
+  default     = []
+}
