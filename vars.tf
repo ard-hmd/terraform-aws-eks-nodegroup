@@ -70,6 +70,10 @@ variable "node_groups" {
   description = "List of node groups for the EKS cluster"
   type        = list(object({
     name = string
+    ami_type = string
+    instance_types = list(string)
+    capacity_type  = string
+    disk_size      = number
     # Ajoutez d'autres attributs si nécessaire
   }))
   default     = []
