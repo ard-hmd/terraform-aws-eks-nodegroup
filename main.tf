@@ -45,6 +45,10 @@ resource "aws_eks_node_group" "node-ec2" {
     min_size     = try(each.value.scaling_config.min_size, 1)
   }
 
+  launch_template {
+    name = "toto"
+  }
+
   update_config {
     max_unavailable = try(each.value.update_config.max_unavailable, 1)
   }
