@@ -15,6 +15,13 @@ This Terraform module allows for the deployment of an EKS Node Group in AWS with
 module "eks_node_group" {
   source            = "github.com/ard-hmd/terraform-aws-eks-nodegroup.git"
   eks_cluster_name  = "my-eks-cluster"
+
+  default_scaling_config = {
+    desired_size = 3
+    max_size     = 4
+    min_size     = 2
+  }
+
   node_groups       = [
     {
       name           = "node-group-1",
@@ -24,8 +31,8 @@ module "eks_node_group" {
       disk_size      = 20
     }
   ]
-  public_subnets_ids  = module.aws_vpc.public_subnets_ids
-  private_subnets_ids = module.aws_vpc.private_subnets_ids
+  public_subnets_ids  = ["subnet-x", "subnet-x"]
+  private_subnets_ids = ["subnet-x", "subnet-x"]
 }
 ```
 
