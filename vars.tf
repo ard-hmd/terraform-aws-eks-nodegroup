@@ -40,14 +40,14 @@ variable "eks_cluster_name" {
 # List of node groups for the EKS cluster
 variable "node_groups" {
   description = "List of node groups for the EKS cluster"
-  type        = list(object({
+  type = list(object({
     name           = string
     ami_type       = string
     instance_types = list(string)
     capacity_type  = string
     disk_size      = number
   }))
-  default     = []
+  default = []
 }
 
 # Default scaling configuration for the EKS node group
