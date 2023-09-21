@@ -56,7 +56,7 @@ variable "default_scaling_config" {
 # List of node groups for the EKS cluster
 variable "node_groups" {
   description = "List of node groups for the EKS cluster"
-  type        = list(object({
+  type = list(object({
     name           = string
     ami_type       = string
     instance_types = list(string)
@@ -68,7 +68,7 @@ variable "node_groups" {
       min_size     = number
     }))
   }))
-  default     = []
+  default = []
 }
 
 # The IDs of the public subnets in the existing VPC
