@@ -16,21 +16,21 @@ module "eks_node_group" {
   source            = "github.com/ard-hmd/terraform-aws-eks-nodegroup.git"
   eks_cluster_name  = "my-eks-cluster"
 
-  default_scaling_config = {
-    desired_size = 3
-    max_size     = 4
-    min_size     = 2
-  }
-
-  node_groups       = [
+  node_groups         = [
     {
-      name           = "node-group-1",
-      ami_type       = "AL2_x86_64",
-      instance_types = ["t3.medium"],
-      capacity_type  = "ON_DEMAND",
+      name           = "nodegroup-1"
+      ami_type       = "AL2_x86_64"
+      instance_types = ["t3.medium"]
+      capacity_type  = "ON_DEMAND"
       disk_size      = 20
+      scaling_config = {
+        desired_size = 2
+        max_size     = 3
+        min_size     = 1
+      }
     }
   ]
+  
   public_subnets_ids  = ["subnet-x", "subnet-x"]
   private_subnets_ids = ["subnet-x", "subnet-x"]
 }

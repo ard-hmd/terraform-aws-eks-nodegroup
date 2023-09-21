@@ -37,18 +37,6 @@ variable "eks_cluster_name" {
   type        = string
 }
 
-# List of node groups for the EKS cluster
-variable "node_groups" {
-  description = "List of node groups for the EKS cluster"
-  type = list(object({
-    name           = string
-    ami_type       = string
-    instance_types = list(string)
-    capacity_type  = string
-    disk_size      = number
-  }))
-  default = []
-}
 
 # Default scaling configuration for the EKS node group
 variable "default_scaling_config" {
@@ -63,6 +51,24 @@ variable "default_scaling_config" {
     max_size     = 3
     min_size     = 1
   }
+}
+
+# List of node groups for the EKS cluster
+variable "node_groups" {
+  description = "List of node groups for the EKS cluster"
+  type        = list(object({
+    name           = string
+    ami_type       = string
+    instance_types = list(string)
+    capacity_type  = string
+    disk_size      = number
+    scaling_config = optional(object({
+      desired_size = number
+      max_size     = number
+      min_size     = number
+    }))
+  }))
+  default     = []
 }
 
 # The IDs of the public subnets in the existing VPC
