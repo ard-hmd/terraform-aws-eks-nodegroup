@@ -86,9 +86,7 @@ resource "aws_eks_addon" "addons" {
   tags = {
     Name = "${var.resource_name_prefix}addon-${each.value.name}"
   }
-  depends_on = [
-    for ng in aws_eks_node_group.node-ec2 : ng
-  ]
+  depends_on = [for ng in aws_eks_node_group.node-ec2 : ng]
 }
 
 # Create an OpenID Connect provider.
