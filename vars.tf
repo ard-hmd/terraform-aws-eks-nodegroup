@@ -26,7 +26,7 @@ variable "addons" {
     },
     {
       name    = "aws-ebs-csi-driver"
-      version = "v1.22.0-eksbuild.2"
+      version = "v1.23.0-eksbuild.1"
     }
   ]
 }
